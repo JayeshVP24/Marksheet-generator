@@ -14,53 +14,55 @@ class marksheet
         fname = s.nextLine();
         System.out.println("Enter Last Name: ");
         lname = s.nextLine();
-        boolean check = true;
-        do
+        for(;;)
         {      
             System.out.println("Enter Branch (CO/IF/EJ): ");
             branch = s.nextLine();
-            if(branch == "CO" || branch == "IF" || branch == "EJ" || branch == "co" || branch == "if" || branch == "ej")
+            System.out.println(branch);
+            if(branch.equals("CO") || branch.equals("IF") || branch.equals("EJ") || branch.equals("co") || branch.equals("if") || branch.equals("ej"))
             {
                 break;
             }
-        }while(check);
-        check = true;
+        }
         for(;;)
         {      
             System.out.println("Enter Semester (1-6): ");
             sem = s.nextInt()   ;
-            if(sem>6)
+            if(sem<6)
             {
                 break;
             }
         }
-        check =  true;
-        while(check==true)
+        while(true)
         {      
             System.out.println("Enter Exam (S for Summer/W for Winter): ");
             exam = s.nextLine();
-            if(exam == "S" || exam == "s")
-            {
-                check = false;
+            if(exam.equals("S") || exam.equals("s"))
+            {   
                 exam = "SUM";
+                break;
             }
-            else if(exam == "W" || exam == "w")
+            else if(exam.equals("W") || exam.equals("w"))
             {
-                check = false;
                 exam = "WIN";
+                break;
             }
         }
-        check = true;
-        while(check==true)
+        while(true)
         {
             System.out.println("Enter number of subjects (less than 10)");
             nsub = s.nextInt();
-            for(i=0;i<nsub;i++)
+            if(nsub<10)
             {
-                System.out.println("Enter Subject " + i+1 + "Name: ");
-                subj[i] = s.nextLine();
-                System.out.println("Enter marks (Out of 100) for subject " + subj[i] + ":");
-                marks[i] = s.nextInt();
+                for(i=0;i<nsub;i++)
+                { 
+                    System.out.println(i+1);  
+                    System.out.println("Enter Subject " + (i+1) + " Name: \n");
+                    subj[i] = s.nextLine();
+                    System.out.println("Enter marks (Out of 100) for subject " + subj[i] + ":\n");
+                    marks[i] = s.nextInt();
+                }
+                break;
             } 
         }
     }

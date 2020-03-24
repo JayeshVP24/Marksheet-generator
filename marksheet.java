@@ -25,13 +25,13 @@ class marksheet
             }
         }while(check);
         check = true;
-        while(check==true)
+        for(;;)
         {      
             System.out.println("Enter Semester (1-6): ");
             sem = s.nextInt()   ;
             if(sem>6)
             {
-                check = false;
+                break;
             }
         }
         check =  true;

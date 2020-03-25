@@ -1,19 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
-
+import java.io.File;
+import java.io.FileWriter;
 class marksheet
 {
-    String fname, lname, branch, exam;
+    String fname, lname, branch, exam, roll, file,res,markings="";
+    String text="";
     String[] subj = new String[10];
-    int sem, nsub, i, total=0,j=0;
+    int sem, nsub, i, subtotal ,total=0;
     int[] marks = new int[10];
-    double perc;
+    double perc = 0.0;
     Scanner s = new Scanner(System.in);
-    void gd()
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in));   
+    void gd() throws IOException
     {
-        System.out.println("Enter First Name: ");
+        System.out.println("Enter First Name: ");   
         fname = s.nextLine();
         System.out.println("Enter Last Name: ");
         lname = s.nextLine();
+        System.out.println("Enter Roll No: ");
+        roll = s.nextLine();
+        file = roll+".txt";
+        System.out.println(file);
         for(;;)
         {      
             System.out.println("Enter Branch (CO/IF/EJ): ");
@@ -33,7 +43,7 @@ class marksheet
                 break;
             }
         }
-        while(true)
+        for(;;)
         {      
             System.out.println("Enter Exam (S for Summer/W for Winter): ");
             exam = s.nextLine();
@@ -56,28 +66,71 @@ class marksheet
             {
                 for(i=0;i<nsub;i++)
                 { 
-                    System.out.println(i+1);  
-                    System.out.println("Enter Subject " + (i+1) + " Name: \n");
-                    subj[i] = s.nextLine();
-                    System.out.println("Enter marks (Out of 100) for subject " + subj[i] + ":\n");
-                    marks[i] = s.nextInt();
+                    System.out.println("Enter Subject " + (i+1) + " Name: ");
+                    subj[i] = r.readLine();
+                    while(true)
+                    {
+                        System.out.println("Enter marks (Out of 100) for subject " + subj[i] + ":");
+                        marks[i] = Integer.parseInt(r.readLine());
+                        if(marks[i]<=100)
+                            break;
+                    }
                 }
                 break;
             } 
         }
+        subtotal = nsub * 100;
     }
-    void result()
+    void result() throws IOException
     {
         for(i=0;i<nsub;i++)
         {
             total += marks[i];
         }
-        perc = ((total/100)*(nsub*100));
+        perc = ((total/subtotal)*100.00);
+        System.out.println(perc);
+        for(i=0;i<nsub;i++)
+        {
+            if(marks[i]<28)
+            {    
+                res = "FAIL";
+                break;
+            }
+            else
+            {
+                res = "PASS";
+            }
+        }
     }
-    public static void main(String args[]) 
+
+        
+    void sheeet() throws IOException
+    {   
+        for(i=0;i>nsub;i++)
+        {
+            markings.concat(subj[i]+":\t\t"+marks[i]+"\n");
+        }
+        System.out.println(markings);
+        File f = new File(file);
+        if (f.createNewFile()) 
+        {
+            System.out.println("File created: " + f.getName());
+        } 
+        else 
+        {
+            System.out.println("File already exists.");
+        }
+        FileWriter fw = new FileWriter(file);
+        text = ("Name: "+fname+" "+lname+"\t\t\tRoll Number: "+roll+"\n\nBranch: "+branch+"\t\tSem: "+sem+"\t\tExam: "+exam+"\n\n"+markings+"\n\nTotal: "+total+"\t\tPerecntage: "+perc+"\t\tRESULT: "+res);
+        System.out.println(text);
+        fw.write(text);
+        fw.close();
+    }
+    public static void main(String args[]) throws IOException
     {
         marksheet m = new marksheet();
         m.gd();
         m.result();    
+        m.sheeet();
     }
 }

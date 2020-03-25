@@ -1,16 +1,18 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 class marksheet
 {
-    String fname, lname, branch, exam, roll, file,res,markings="";
+    String fname, lname, branch, exam, roll, make,file,res;
+    String markings="\n";
     String text="";
     String[] subj = new String[10];
     int sem, nsub, i, subtotal ,total=0;
-    int[] marks = new int[10];
+    int[] marks = new int[10];  
     double perc = 0.0;
     Scanner s = new Scanner(System.in);
     BufferedReader r = new BufferedReader(new InputStreamReader(System.in));   
@@ -47,7 +49,7 @@ class marksheet
         for(;;)
         {      
             System.out.println("Enter Exam (S for Summer/W for Winter): ");
-            exam = r.readLine();3333
+            exam = r.readLine();
             if(exam.equals("S") || exam.equals("s"))
             {   
                 exam = "SUM";
@@ -69,6 +71,7 @@ class marksheet
                 { 
                     System.out.println("Enter Subject " + (i+1) + " Name: ");
                     subj[i] = r.readLine();
+                    System.out.println(subj[i]);
                     while(true)
                     {
                         System.out.println("Enter marks (Out of 100) for subject " + subj[i] + ":");
@@ -76,6 +79,7 @@ class marksheet
                         if(marks[i]<=100)
                             break;
                     }
+                    System.out.println(marks[i]);
                 }
                 break;
             } 
@@ -89,8 +93,9 @@ class marksheet
         {
             total += marks[i];
         }
-        perc = ((total/subtotal)*100.00);
-        System.out.println(perc);
+        perc = (((double)total/(double)subtotal)*100.00);
+        DecimalFormat df = new DecimalFormat("#.00");
+        df.format(perc);
         for(i=0;i<nsub;i++)
         {
             if(marks[i]<28)
@@ -110,8 +115,9 @@ class marksheet
         for(i=0;i>nsub;i++)
         {
             System.out.println(subj[i]+"\n"+marks[i]);
-            markings.concat(subj[i]+":\t\t"+marks[i]+"\n");
-        }
+            make = make.concat("\n").concat(subj[i]).concat(":\t\t").concat(Integer.toString(marks[i]));
+            markings = markings.concat(make);
+        } 
         System.out.println(markings);
         File f = new File(file);
         if (f.createNewFile()) 

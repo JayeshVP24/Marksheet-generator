@@ -1,7 +1,7 @@
-Name: Jayrdh sfss			Roll Number: 23
+Name: Jayesh Potlabattini			Roll Number: 23
 
-Branch: co		Sem: 4		Exam: SUM
+Branch: CO		Sem: 4		Exam: SUM
 
 
 
-Total: 171		Perecntage: 0.0		RESULT: FAIL
+Total: 154		Perecntage: 77.0		RESULT: PASS

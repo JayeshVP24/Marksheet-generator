@@ -14,20 +14,21 @@ class marksheet
     double perc = 0.0;
     Scanner s = new Scanner(System.in);
     BufferedReader r = new BufferedReader(new InputStreamReader(System.in));   
+
     void gd() throws IOException
     {
         System.out.println("Enter First Name: ");   
-        fname = s.nextLine();
+        fname = r.readLine();
         System.out.println("Enter Last Name: ");
-        lname = s.nextLine();
+        lname = r.readLine();
         System.out.println("Enter Roll No: ");
-        roll = s.nextLine();
+        roll = r.readLine();
         file = roll+".txt";
         System.out.println(file);
         for(;;)
         {      
             System.out.println("Enter Branch (CO/IF/EJ): ");
-            branch = s.nextLine();
+            branch = r.readLine();
             System.out.println(branch);
             if(branch.equals("CO") || branch.equals("IF") || branch.equals("EJ") || branch.equals("co") || branch.equals("if") || branch.equals("ej"))
             {
@@ -37,7 +38,7 @@ class marksheet
         for(;;)
         {      
             System.out.println("Enter Semester (1-6): ");
-            sem = s.nextInt()   ;
+            sem = Integer.parseInt(r.readLine());
             if(sem<6)
             {
                 break;
@@ -46,7 +47,7 @@ class marksheet
         for(;;)
         {      
             System.out.println("Enter Exam (S for Summer/W for Winter): ");
-            exam = s.nextLine();
+            exam = r.readLine();3333
             if(exam.equals("S") || exam.equals("s"))
             {   
                 exam = "SUM";
@@ -61,7 +62,7 @@ class marksheet
         while(true)
         {
             System.out.println("Enter number of subjects (less than 10)");
-            nsub = s.nextInt();
+            nsub = Integer.parseInt(r.readLine());
             if(nsub<10)
             {
                 for(i=0;i<nsub;i++)
@@ -81,6 +82,7 @@ class marksheet
         }
         subtotal = nsub * 100;
     }
+
     void result() throws IOException
     {
         for(i=0;i<nsub;i++)
@@ -103,11 +105,11 @@ class marksheet
         }
     }
 
-        
     void sheeet() throws IOException
     {   
         for(i=0;i>nsub;i++)
         {
+            System.out.println(subj[i]+"\n"+marks[i]);
             markings.concat(subj[i]+":\t\t"+marks[i]+"\n");
         }
         System.out.println(markings);

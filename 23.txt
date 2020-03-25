@@ -1,7 +1,7 @@
-Name: SAF GGREEF			Roll Number: 23
+Name: Jayrdh sfss			Roll Number: 23
 
-Branch: CO		Sem: 4		Exam: SUM
+Branch: co		Sem: 4		Exam: SUM
 
 
 
-Total: 218		Perecntage: 0.0		RESULT: PASS
+Total: 171		Perecntage: 0.0		RESULT: FAIL

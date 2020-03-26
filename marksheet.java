@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 class marksheet
 {
-    String fname, lname, branch, exam, roll, make,file,res;
+    String fname, lname, branch, exam, roll,file,res,sres;
     String markings="\n";
     String text="";
     String[] subj = new String[10];
@@ -26,7 +26,6 @@ class marksheet
         System.out.println("Enter Roll No: ");
         roll = r.readLine();
         file = roll+".txt";
-        System.out.println(file);
         for(;;)
         {      
             System.out.println("Enter Branch (CO/IF/EJ): ");
@@ -71,7 +70,6 @@ class marksheet
                 { 
                     System.out.println("Enter Subject " + (i+1) + " Name: ");
                     subj[i] = r.readLine();
-                    System.out.println(subj[i]);
                     while(true)
                     {
                         System.out.println("Enter marks (Out of 100) for subject " + subj[i] + ":");
@@ -79,7 +77,6 @@ class marksheet
                         if(marks[i]<=100)
                             break;
                     }
-                    System.out.println(marks[i]);
                 }
                 break;
             } 
@@ -99,7 +96,7 @@ class marksheet
         for(i=0;i<nsub;i++)
         {
             if(marks[i]<28)
-            {    
+            {       
                 res = "FAIL";
                 break;
             }
@@ -112,24 +109,16 @@ class marksheet
 
     void sheeet() throws IOException
     {   
-        for(i=0;i>nsub;i++)
-        {
-            System.out.println(subj[i]+"\n"+marks[i]);
-            make = make.concat("\n").concat(subj[i]).concat(":\t\t").concat(Integer.toString(marks[i]));
-            markings = markings.concat(make);
+        for(i=0;i<nsub;i++)
+        {   
+            sres = (marks[i]>28)?("\t\tPASS"):("\t\tFAIL");
+            markings = markings.concat("\n"+subj[i]+":\t\t"+marks[i]+sres+"\n");
         } 
-        System.out.println(markings);
-        File f = new File(file);
-        if (f.createNewFile()) 
-        {
-            System.out.println("File created: " + f.getName());
-        } 
-        else 
-        {
-            System.out.println("File already exists.");
-        }
+        File f = new File(file);    
+        f.createNewFile();
+        System.out.println("File created: " + f.getName());
         FileWriter fw = new FileWriter(file);
-        text = ("Name: "+fname+" "+lname+"\t\t\tRoll Number: "+roll+"\n\nBranch: "+branch+"\t\tSem: "+sem+"\t\tExam: "+exam+"\n\n"+markings+"\n\nTotal: "+total+"\t\tPerecntage: "+perc+"\t\tRESULT: "+res);
+        text = ("Name: "+fname+" "+lname+"\t\t\t\tRoll Number: "+roll+"\n\nBranch: "+branch+"\t\tSem: "+sem+"\t\t\t\tExam: "+exam+markings+"\nTotal: "+total+"\t\tPerecntage: "+perc+"\t\tRESULT: "+res);
         System.out.println(text);
         fw.write(text);
         fw.close();

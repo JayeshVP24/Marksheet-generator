@@ -1,7 +1,13 @@
-Name: Jayesh Potlabattini			Roll Number: 23
+Name: Jayesh Potlabattini				Roll Number: 23
 
-Branch: CO		Sem: 4		Exam: SUM
+Branch: co		Sem: 4				Exam: SUM
 
+JPR:		93		PASS
 
+SEN:		91		PASS
 
-Total: 154		Perecntage: 77.0		RESULT: PASS
+DCC:		96		PASS
+
+MIC:		97		PASS
+
+Total: 377		Perecntage: 94.25		RESULT: PASS
